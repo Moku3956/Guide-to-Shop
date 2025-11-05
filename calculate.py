@@ -1,4 +1,4 @@
-import haversine
+from haversine import haversine
 import graph_data
 
 def find_nearest_node(current_lat, current_lon, nodes_data):
