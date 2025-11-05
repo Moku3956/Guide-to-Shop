@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import graph_data
+import calculate
 
 app = FastAPI()
 
@@ -15,7 +16,8 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/api/get-route")
 def get_info(lat: float, lon: float):
-    return 
+    node_name = calculate.find_nearest_node(lat, lon, graph_data.nodes)
+    return calculate.designed_route(node_name)
     
 @app.get("/")
 def display(request: Request):
