@@ -2,6 +2,7 @@
 async function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
+    
     // GETメソッドでlat,lonをエンドポイントに渡す
     const url = `/api/get-route?lat=${lat}&lon=${lon}`;
     const request = new Request(url);
@@ -50,7 +51,6 @@ const options = {
 
 // success, errorをコールバックする
 const watchLocation = navigator.geolocation.watchPosition(success, error, options)
-
 
 
 
