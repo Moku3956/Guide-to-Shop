@@ -1,8 +1,19 @@
 
+const initialLat = 34.981714;
+const initialLon = 135.963098;
+const initialZoom = 16;
+
+
+let map = L.map('map').setView([initialLat, initialLon], initialZoom)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map)
+
 async function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-    
+
     // GETメソッドでlat,lonをエンドポイントに渡す
     const url = `/api/get-route?lat=${lat}&lon=${lon}`;
     const request = new Request(url);
@@ -13,7 +24,8 @@ async function success(position) {
             throw new Error(`レスポンスステータス: ${response.status}`);
         }
         // calculate.pyで計算した結果を受け取る
-        const currentLocation = await response.json() 
+        const routeCoordinates = await response.json()
+        let polylines = L.polyline(routeCoordinates).addTo(map);
 
     } catch (error) {
         console.error("エラー:", error);
