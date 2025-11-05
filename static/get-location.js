@@ -10,23 +10,43 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map)
 
+let currentCordinates = []
+let markerLayer = null;
+let polylinesLayer = null;
+
 async function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
-
     // GETメソッドでlat,lonをエンドポイントに渡す
-    const url = `/api/get-route?lat=${lat}&lon=${lon}`;
-    const request = new Request(url);
+    const url = "/api/get-route";
+    const request = new Request(url,{
+        method: "POST",
+        body: JSON.stringify({
+            "lat": lat,
+            "lon": lon,
+            "currentCordinates": currentCordinates
+        }),
+        headers: {
+            'Content-Type': 'application/json' // ヘッダーも追加するのが望ましい
+        }
+    });
 
     try {
         const response = await fetch(request);
         if (!response.ok) {
             throw new Error(`レスポンスステータス: ${response.status}`);
         }
-        // calculate.pyで計算した結果を受け取る
+        // calculate.pyで計算した結果を受け取る,経路の座標リスト
         const routeCoordinates = await response.json()
-        let polylines = L.polyline(routeCoordinates).addTo(map);
-
+        if (markerLayer) {
+            markerLayer.remove();
+        }
+        if (polylinesLayer) {
+            polylinesLayer.remove();
+        }
+        markerLayer = L.marker([lat, lon]).addTo(map);
+        polylinesLayer = L.polyline(routeCoordinates.route_points_lat_and_lon, {color: 'blue'}).addTo(map);
+        currentCordinates = routeCoordinates.route_points_name;
     } catch (error) {
         console.error("エラー:", error);
     }
@@ -63,12 +83,6 @@ const options = {
 
 // success, errorをコールバックする
 const watchLocation = navigator.geolocation.watchPosition(success, error, options)
-
-
-
-
-
-
 
 
 
