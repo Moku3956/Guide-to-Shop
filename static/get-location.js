@@ -24,7 +24,7 @@ async function success(position) {
             throw new Error(`レスポンスステータス: ${response.status}`);
         }
         // calculate.pyで計算した結果を受け取る
-        const currentLocation = await response.json() 
+        const routeCoordinates = await response.json() 
 
     } catch (error) {
         console.error("エラー:", error);
