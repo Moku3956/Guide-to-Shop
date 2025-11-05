@@ -20,7 +20,8 @@ def find_nearest_node(current_lat, current_lon, nodes_data):
             min_distance = distance
             nearest_node_id = name
             
-    
+    if min_distance > 0.3: # haversineのデフォルト単位はkmなので、300mを0.3に
+        nearest_node_id = "main_gate"
     return nearest_node_id # nodeの名前を返す
         
 def designed_route(node_name):

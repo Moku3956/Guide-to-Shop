@@ -25,6 +25,7 @@ async function success(position) {
         }
         // calculate.pyで計算した結果を受け取る
         const routeCoordinates = await response.json()
+        var marker = L.marker([lat, lon]).addTo(map);
         let polylines = L.polyline(routeCoordinates).addTo(map);
 
     } catch (error) {
@@ -63,12 +64,6 @@ const options = {
 
 // success, errorをコールバックする
 const watchLocation = navigator.geolocation.watchPosition(success, error, options)
-
-
-
-
-
-
 
 
 
