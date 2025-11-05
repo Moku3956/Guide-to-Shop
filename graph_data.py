@@ -59,6 +59,11 @@ nodes = {
     "sub23": {"name": "補助点23", "lat": 34.978776, "lon": 135.963514},
 }    
 
+
+# 道順を指定する
+# メインとなる道は２つ
+# メインではない経路(枝)はメインに接続できるようにする
+
 edges = dict([
     #
     # 正門から目的地まで(メイン1) ↓
@@ -78,7 +83,7 @@ edges = dict([
     ("colearning_main", "sub17"),   
     ("sub17", "destination"), 
     ("destination", "goal"),
-    # メイン１の道順の枝  
+    # メイン１の経路の枝  
     ("fountain_left2", "central"),   #メインに接続
     ("bus_stop", "canopy"),   #メインに接続
     ("under_bus_stop", "sub1"),   
@@ -108,7 +113,7 @@ edges = dict([
     ("sub16", "links"),   
     ("links", "destination"),   
     ("destination", "goal"),
-    # メイン２の道順の枝
+    # メイン２の経路の枝
     ("fountain_left1", "fountain"),   
     ("fountain", "headquarter"),   #メインに接続
     ("sub6", "prisom_right"),   #メインに接続
