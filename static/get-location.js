@@ -5,6 +5,9 @@ const initialZoom = 16;
 
 
 let map = L.map('map').setView([initialLat, initialLon], initialZoom)
+const markerOnDestination = L.marker([34.980316, 135.963133], {color: "red"}).addTo(map); // 店舗の座標に赤いマーク
+markerOnDestination.bindPopup("立命館No.1サッカーサークル<br>ぜんざい屋").openPopup()
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -27,7 +30,7 @@ async function success(position) {
             "currentCordinates": currentCordinates
         }),
         headers: {
-            'Content-Type': 'application/json' // ヘッダーも追加するのが望ましい
+            'Content-Type': 'application/json' 
         }
     });
 

@@ -42,7 +42,7 @@ def find_nearest_node(current_lat, current_lon, nodes_data, current_nodes_data):
 
 def designed_route(node_name):
     route = [node_name]  # 現在地からの最短ノードは最初に保存
-    # dictinaryをリンクリストのようにたどり、ノードの名前をreturn
+    # dictinaryをリンクリストのようにたどり、ノードの名前リストをreturn
     while graph_data.edges[node_name] != "goal":
         route.append(graph_data.edges[node_name])
         node_name = graph_data.edges[node_name]
