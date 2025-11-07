@@ -36,7 +36,7 @@ def get_info(request_data: RouteRequest):
         route_points_lat_and_lon.append([graph_data.nodes[item]["lat"], graph_data.nodes[item]["lon"]])
     return {
         "route_points_lat_and_lon": route_points_lat_and_lon, # 描画用の座標リスト
-        "route_points_name": route_points_name           # JS が次回送るためのノードIDリスト
+        "route_points_name": route_points_name           # JS が次回送るためのノード名前リスト
     }        
 @app.get("/")
 def display(request: Request):
