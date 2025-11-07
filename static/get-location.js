@@ -19,7 +19,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map)
 
 // 画面のズームを終えたら、下にあるstartCompassを起動
-map.once('zoomend', startCompass);
+map.on('zoomend', startCompass);
 
 let currentCordinates = []  // 最短距離のノードが最初に表示された経路内から選ばれるようにする
 let markerLayer = null;
