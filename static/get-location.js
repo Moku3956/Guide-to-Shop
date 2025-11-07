@@ -50,13 +50,13 @@ async function success(position) {
         // calculate.pyで計算した結果を受け取る,経路の座標リスト
         const routeCoordinates = await response.json()
         if (markerLayer) {
-            markerLayer.remove();
+            markerLayer.setLatLng([lat, lon]);
+        } else {
+            markerLayer = L.marker([lat, lon], { icon: arrowIcon }).addTo(map);
         }
         if (polylinesLayer) {
             polylinesLayer.remove();
         }
-
-        markerLayer = L.marker([lat, lon], { icon: arrowIcon }).addTo(map);
         polylinesLayer = L.polyline(routeCoordinates.route_points_lat_and_lon, { color: 'blue' }).addTo(map);
         currentCordinates = routeCoordinates.route_points_name;
     } catch (error) {
