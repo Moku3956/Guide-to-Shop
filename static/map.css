@@ -4,3 +4,36 @@
     width: 100%;
     position: relative;
 }
+
+
+.arrow-icon-container {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+
+    background-color: #007bff;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 28px !important;
+    height: 28px !important;
+    
+    margin-left: -14px !important;
+    margin-top: -14px !important;
+}
+
+
+#direction-arrow {
+    font-size: 20px; 
+    color: white; 
+    line-height: 1;
+
+    /* 向きを変えた時にスムーズに回転するようになる */
+    transition: transform 0.2s ease-out;
+    transform-origin: center;
+}
