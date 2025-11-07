@@ -50,3 +50,29 @@
     font-size: 14px;
     text-align: center;
 }
+
+.footer {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.5);  /* より透明に */
+    color: rgba(255, 255, 255, 0.7);  /* テキストも透明に */
+    padding: 5px 8px;  /* パディングを小さく */
+    border-radius: 5px;
+    font-size: 10px;  /* フォントサイズをより小さく */
+    z-index: 1000;
+}
+
+.footer a {
+    color: rgba(52, 152, 219, 0.8);  /* リンクも透明に */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    opacity: 1;  /* ホバー時は完全に表示 */
+}
+
+.footer p {
+    margin: 3px 0;  /* マージンを小さく */
+}
