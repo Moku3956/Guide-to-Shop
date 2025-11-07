@@ -50,7 +50,7 @@ async function success(position) {
         // calculate.pyで計算した結果を受け取る,経路の座標リスト
         const routeCoordinates = await response.json()
         if (markerLayer) {
-            markerLayer.remove();
+            markerLayer.setLatLng([lat, lon]);
         }
         if (polylinesLayer) {
             polylinesLayer.remove();
@@ -132,7 +132,7 @@ function handlerForIOS(event) {
 }
 
 // iOS以外用
-// その他の端末は、alphaを使う。iOSとの回転方向を合わせた
+// その他の端末は、alphaを使う. iOSとの回転方向を合わせた
 function handlerForOthers(event) {
     const directionArrow = document.getElementById("direction-arrow")
     if (directionArrow) {
